@@ -1,6 +1,7 @@
 export function useResource() {
   return {
-    posts: wrapPromise(fetchPosts())
+    posts: wrapPromise(fetchPosts()),
+    users: wrapPromise(fetchUsers())
   };
 }
 
@@ -35,4 +36,9 @@ function fetchPosts() {
   return fetch(
     "https://jsonplaceholder.typicode.com/posts?_limit=5"
   ).then(res => res.json());
+}
+
+async function fetchUsers(){
+    const res = await fetch('https://jsonplaceholder.typicode.com/users?_limit=5')
+    return await res.json()
 }
